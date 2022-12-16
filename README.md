@@ -1,2 +1,2 @@
 # dlscripts
-My shell and R scripts to download and prepare data 
+My shell and R scripts to download and prepare private data 
