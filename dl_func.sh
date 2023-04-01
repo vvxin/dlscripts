@@ -18,8 +18,19 @@ hourly_dl() {
 # SENSOR NETWORK DAY AVERAGE INTERPOLATION
 # Sample URL.  Availble since 2022.
 # http://101.201.76.168:8000/picture/pollutant/1/1/daily/O3_20220122.png
+# URL changed since 2023-03-14
+# https://f.hotgrid.cn/picture-service/pollutant/1/1/daily/PM25_20230330.png
+
 
 daily_dl() {
+	url=https://f.hotgrid.cn/picture-service/pollutant/1/1/daily/$2_`date -d "$1" +%Y%m%d`.png
+	if ! test -f "./$2/`date -d "$1" +%Y`/$2_`date -d "$1" +%Y%m%d`.png"
+	then
+		wget -timeout=30 -P ./$2/`date -d "$1" +%Y` $url
+	fi
+}
+
+daily_dl_old() {
 	url=http://101.201.76.168:8000/picture/pollutant/1/1/daily/$2_`date -d "$1" +%Y%m%d`.png
 	if ! test -f "./$2/`date -d "$1" +%Y`/$2_`date -d "$1" +%Y%m%d`.png"
 	then
