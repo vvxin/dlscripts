@@ -5,8 +5,8 @@ source ~/dlscripts/dl_func.sh
 (
 	cd ~/pic/Daily
 
-	start="2022-01-01"
-	end="2022-12-01"
+	start="2023-03-15"
+	end="2023-03-31"
 
 	start=`date -d "$start"`
 	end=`date -d "$end"`
