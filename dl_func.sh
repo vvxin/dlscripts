@@ -7,6 +7,7 @@
 # Time point that ready to download: 48 min every hour
 # URL changed since 2023-05-15
 # https://f.hotgrid.cn/picture-service/pollutant/1/1/hourly/202305/PM25_2023052409.png
+# !!! Time point that ready to download: 1 and a half hour later,  no pic for the current hour
 
 hourly_dl() {	
 	url=https://f.hotgrid.cn/picture-service/pollutant/1/1/hourly/`date -d "$1" +%Y%m`/$2_`date -d "$1" +%Y%m%d%H`.png
@@ -16,6 +17,13 @@ hourly_dl() {
 	fi	
 }
 
+hourly_dl_old() {	
+	url=http://101.201.76.168:8000/picture/pollutant/1/1/hourly/`date -d "$1" +%Y%m`/$2_`date -d "$1" +%Y%m%d%H`.png
+	if ! test -f "./$2/`date -d "$1" +%Y%m`/$2_`date -d "$1" +%Y%m%d%H`.png"
+	then
+		wget -timeout=30 -P ./$2/`date -d "$1" +%Y%m` $url 
+	fi	
+}
 
 # SENSOR NETWORK DAY AVERAGE INTERPOLATION
 # Sample URL.  Availble since 2022.
