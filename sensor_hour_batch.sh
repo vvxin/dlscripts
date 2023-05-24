@@ -5,8 +5,8 @@ source ~/dlscripts/dl_func.sh
 (
 	cd ~/pic/Hourly
 
-	start="2022-12-01 01:00"
-	end="2022-12-02 22:00"
+	start="2023-05-15 10:00"
+	end="2023-05-24 14:00"
 
 	start=`date -d "$start"`
 	end=`date -d "$end"`
