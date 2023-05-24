@@ -1,4 +1,6 @@
 #!/bin/bash
+#crontab:
+#30 2,5,8 * * * ~/dlscripts/sensor_day.sh >/dev/null 2>&1
 
 source ~/dlscripts/dl_func.sh
 
