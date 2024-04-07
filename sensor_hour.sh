@@ -1,6 +1,6 @@
 #!/bin/bash
 #crontab:
-#32,42 * * * * ~/dlscripts/sensor_hour.sh >/dev/null 2>&1
+#32 * * * * ~/dlscripts/sensor_hour.sh >/dev/null 2>&1
 
 
 source ~/dlscripts/dl_func.sh

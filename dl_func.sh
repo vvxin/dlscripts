@@ -14,7 +14,7 @@ hourly_dl() {
 	if ! test -f "./$2/`date -d "$1" +%Y%m`/$2_`date -d "$1" +%Y%m%d%H`.png"
 	then
 		wget -timeout=30 -P ./$2/`date -d "$1" +%Y%m` $url 
-	fi	
+	fi
 }
 
 hourly_dl_old() {	
@@ -46,4 +46,49 @@ daily_dl_old() {
 	then
 		wget -timeout=30 -P ./$2/`date -d "$1" +%Y` $url
 	fi
+}
+
+
+# 36 HOURS FORECAST 'CONTOUR MAP' BASED ON SENSOR DATA
+# Sample URL.  Available since 2023-09-29 (to the end of 2023) 
+# https://f.hotgrid.cn/bjmemc-prediction-picture/predict_qc_2023-09-30_04cur_2023-09-29_00.png
+# Pics ready 1 hour and 25 minutes later than "current" hour
+#
+# URL changed since 2024 Feb
+# https://f.i2value.cn/bjmemc-prediction-picture/predict_qc_2024-02-06_11cur_2024-02-05_11.png
+
+pred_pic_dl() {	
+	url=https://f.i2value.cn/bjmemc-prediction-picture/predict_qc_`date -d "$1" +%Y-%m-%d_%H`cur_`date -d "$2" +%Y-%m-%d_%H`.png
+	if ! test -f "./`date -d "$2" +%Y%m`/`date -d "$2" +%m%d_%H`/predict_qc_`date -d "$1" +%Y-%m-%d_%H`cur_`date -d "$2" +%Y-%m-%d_%H`.png"
+	then
+		wget -timeout=30 -P ./`date -d "$2" +%Y%m`/`date -d "$2" +%m%d_%H` $url
+	fi
+}
+
+# 36 HOURS FORECAST 'EXCEL DATA' BASED ON SENSOR DATA
+# Sample URL.  Available since 2023-09-29  (to the end of 2023) 
+# https://f.hotgrid.cn/bjmemc-prediction-picture/2023-10-09-11.xlsx
+# Data file ready 1 hour and 1 minutes later than "current" hour
+#
+# URL changed since 2024 Feb
+# https://f.i2value.cn/bjmemc-prediction-picture/2024-02-05-11.xlsx
+
+pred_dat_dl() {	
+	url=https://f.i2value.cn/bjmemc-prediction-picture/`date -d "$1" +%Y-%m-%d-%H`.xlsx
+	if ! test -f "./`date -d "$1" +%Y-%m-%d-%H`.xlsx"
+	then
+		wget -timeout=30 -P . $url 
+	fi	
+}
+
+# Add result of the 2nd model with identical data format
+# since 2024-3-30-17
+# https://f.hotgrid.cn/bjmemc-prediction-picture/2024-03-30-17_2.xlsx
+
+pred_dat_dl_2() {	
+	url=https://f.i2value.cn/bjmemc-prediction-picture/`date -d "$1" +%Y-%m-%d-%H`_2.xlsx
+	if ! test -f "./`date -d "$1" +%Y-%m-%d-%H`_2.xlsx"
+	then
+		wget -timeout=30 -P . $url 
+	fi	
 }
