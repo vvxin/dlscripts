@@ -40,3 +40,4 @@ vignettes/*.pdf
 
 # Database connection credentials
 oracle_emc.R
+postgresql_3clear.R
